@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر NL - طلب المنتج</title>
     <style>
+        /* ===== إعادة تعيين عام ===== */
         * {
             margin: 0;
             padding: 0;
@@ -12,6 +13,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* ===== خلفية الصفحة ===== */
         body {
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             display: flex;
@@ -21,6 +23,7 @@
             padding: 20px;
         }
 
+        /* ===== البطاقة الرئيسية ===== */
         .card {
             background: white;
             max-width: 450px;
@@ -37,7 +40,7 @@
             box-shadow: 0 40px 70px rgba(0, 0, 0, 0.6);
         }
 
-        /* Header المتجر */
+        /* ===== رأس المتجر (شعار + اسم) ===== */
         .store-header {
             display: flex;
             align-items: center;
@@ -70,6 +73,7 @@
             letter-spacing: 1px;
         }
 
+        /* ===== العنوان الرئيسي ===== */
         .card h2 {
             font-size: 20px;
             font-weight: 600;
@@ -82,6 +86,7 @@
             color: #f7971e;
         }
 
+        /* ===== معلومات المنتج ===== */
         .product-info {
             background: #f8f9fc;
             border-radius: 16px;
@@ -102,6 +107,7 @@
             color: #6c757d;
         }
 
+        /* ===== مجموعات الحقول ===== */
         .input-group {
             text-align: right;
             margin-bottom: 16px;
@@ -153,6 +159,7 @@
             font-weight: 700;
         }
 
+        /* ===== زر الطلب ===== */
         .btn-order {
             background: linear-gradient(135deg, #f7971e, #ffd200);
             color: #1a1a2e;
@@ -184,6 +191,7 @@
             transform: none;
         }
 
+        /* ===== رسائل النجاح والخطأ ===== */
         .success-msg {
             background: #d4edda;
             color: #155724;
@@ -214,6 +222,7 @@
             display: block;
         }
 
+        /* ===== التذييل ===== */
         .note {
             font-size: 12px;
             color: #a0aec0;
@@ -231,7 +240,7 @@
             font-weight: 600;
         }
 
-        /* تنسيق شريط التحميل */
+        /* ===== تنسيق شريط التحميل ===== */
         .loading-dots::after {
             content: '';
             animation: dots 1.5s infinite;
@@ -247,87 +256,105 @@
 </head>
 <body>
 
+    <!-- ===== البطاقة الرئيسية ===== -->
     <div class="card">
 
-        <!-- هيدر المتجر مع الشعار والاسم -->
+        <!-- ===== رأس المتجر ===== -->
         <div class="store-header">
             <div class="store-logo">NL</div>
             <div class="store-name">NL</div>
         </div>
 
+        <!-- ===== العنوان ===== -->
         <h2>📦 <span>أدخل بياناتك</span> وسيتم التواصل معك خلال 24 ساعة</h2>
 
-        <!-- معلومات المنتج -->
+        <!-- ===== معلومات المنتج ===== -->
         <div class="product-info">
             <div class="product-name">🛒 منتج مميز من NL</div>
             <div class="product-desc">أفضل جودة بأفضل سعر • اطلب الآن واحصل على خصم خاص</div>
         </div>
 
+        <!-- ===== نموذج الطلب ===== -->
         <form id="orderForm">
 
+            <!-- الاسم الكامل -->
             <div class="input-group required">
                 <label for="fullName">الاسم الكامل</label>
                 <input type="text" id="fullName" placeholder="أحمد محمد علي" required>
                 <span class="example">مثال: أحمد محمد علي</span>
             </div>
 
+            <!-- رقم الهاتف -->
             <div class="input-group required">
                 <label for="phone">رقم الهاتف</label>
                 <input type="tel" id="phone" placeholder="07501234567" required>
                 <span class="example">مثال: 07501234567</span>
             </div>
 
+            <!-- المحافظة -->
             <div class="input-group required">
                 <label for="city">المحافظة</label>
                 <input type="text" id="city" placeholder="بغداد" required>
                 <span class="example">مثال: بغداد</span>
             </div>
 
+            <!-- العنوان بالتفصيل -->
             <div class="input-group required">
                 <label for="address">العنوان بالتفصيل</label>
                 <textarea id="address" placeholder="حي الكرادة، شارع المنتجي، قرب جامع الكرادة" required></textarea>
                 <span class="example">مثال: حي الكرادة، شارع المنتجي، قرب جامع الكرادة</span>
             </div>
 
+            <!-- رسائل النظام -->
             <div id="successMessage" class="success-msg">✅ تم استلام طلبك! سنتواصل معك قريباً.</div>
             <div id="errorMessage" class="error-msg">❌ حدث خطأ، يرجى المحاولة مرة أخرى.</div>
 
+            <!-- زر الإرسال -->
             <button type="submit" class="btn-order" id="submitBtn">اطلب الآن</button>
         </form>
 
+        <!-- ===== التذييل ===== -->
         <div class="note">
             <i>🔒</i> بياناتك آمنة • <i>🤖</i> سيتم إرسال طلبك فوراً
         </div>
     </div>
 
+    <!-- ===== كود جافا سكريبت ===== -->
     <script>
-        // ✅ التوكن الصحيح
+        // ===== توكن البوت ومعرف الدردشة =====
         const BOT_TOKEN = '8155895868:AAEL6jCEZGWULLQ3udMg3gp717uxoLFyMY0';
         const CHAT_ID = '5049332771';
 
+        // ===== عند تقديم النموذج =====
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            // جلب البيانات من الحقول
             const name = document.getElementById('fullName').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const city = document.getElementById('city').value.trim();
             const address = document.getElementById('address').value.trim();
 
+            // عناصر واجهة المستخدم
             const successMsg = document.getElementById('successMessage');
             const errorMsg = document.getElementById('errorMessage');
             const submitBtn = document.getElementById('submitBtn');
 
+            // إخفاء أي رسائل سابقة
             successMsg.classList.remove('show');
             errorMsg.classList.remove('show');
 
+            // التحقق من الحقول
             if (!name || !phone || !city || !address) {
                 alert('⚠️ يرجى ملء جميع الحقول المطلوبة');
                 return;
             }
 
+            // تعطيل الزر وإظهار حالة التحميل
             submitBtn.disabled = true;
             submitBtn.innerHTML = '⏳ جاري الإرسال<span class="loading-dots"></span>';
 
+            // بناء نص الرسالة لإرسالها إلى تيليجرام
             const message = 
                 `🛍️ *طلب منتج جديد - متجر NL*%0A%0A` +
                 `👤 *الاسم:* ${name}%0A` +
@@ -337,6 +364,7 @@
                 `✅ تم استلام الطلب من متجر NL.`;
 
             try {
+                // إرسال الطلب إلى بوت تيليجرام
                 const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: {
@@ -351,18 +379,21 @@
 
                 const result = await response.json();
 
+                // التحقق من نجاح الإرسال
                 if (result.ok) {
                     successMsg.classList.add('show');
-                    document.getElementById('orderForm').reset();
+                    document.getElementById('orderForm').reset(); // مسح الحقول
                 } else {
                     errorMsg.classList.add('show');
-                    console.error('Telegram Error:', result);
+                    console.error('خطأ في تيليجرام:', result);
                 }
             } catch (error) {
+                // في حالة وجود خطأ في الاتصال
                 errorMsg.classList.add('show');
-                console.error('Error:', error);
+                console.error('خطأ في الاتصال:', error);
             }
 
+            // إعادة تفعيل الزر
             submitBtn.disabled = false;
             submitBtn.innerHTML = 'اطلب الآن';
         });
